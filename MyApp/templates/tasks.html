@@ -1,44 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplo estructura HTML5</title>
-</head>
-
-<body>
-<header>
-    <h1>Lista de tareas</h1>
-</header>
-<main>
-    <table border="1" style=" border-collapse: collapse;">
-        <thead>
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <header>
+        <h1>Lista de tareas</h1>
+    </header>
+    <main>
+        <table class="table table-striped table-bordered">
+            <thead>
             <tr>
                 <th>Titulo</th>
                 <th>Descripción</th>
                 <th>Proyecto</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for task in tasks_list %}
-            <tr>
-                <td>{{ task.title }}</td>
-                <td>{{ task.description }}</td>
-                <td>{{ task.project_id }}</td>
-                <td>
-                    <button>
+            </thead>
+            <tbody>
+            {% for task in tasks_list %}
+                <tr>
+                    <td>
                         {% if task.done %}
-                            ✅ Done
-                        {% else %}
-                            ❌ Not Done
-                        {% endif %}
-                    </button>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</main>
-</body>
-</html>
+                                ✅
+                            {% else %}
+                                ❌
+                            {% endif %}
+                        {{ task.title }}
+                    </td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.project_id }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

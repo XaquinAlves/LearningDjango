@@ -1,7 +1,8 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from MyApp.models import Project, Task
+from MyApp.forms import CreateNewTask
 
 
 # Create your views here.
@@ -27,3 +28,15 @@ def tasks(request):
     return render(request, 'tasks.html', {
         'tasks_list': tasks_list
     })
+
+def create_task(request):
+    if request.method == 'GET':
+        return render(request, 'create_task.html', {
+            'form': CreateNewTask()
+        })
+    elif request.method == 'POST':
+        new_task = Task.objects.create(title=request.POST['title'], description=request.POST['description'],  project_id=1)
+        new_task.save()
+        return redirect('/home/tasks/')
+    else:
+        return HttpResponse("Method not allowed")
