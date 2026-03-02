@@ -13,4 +13,4 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s del proyecto %s" % (self.title, self.project)
+        return "Tarea '%s' del proyecto '%s'" % (self.title, self.project)
