@@ -1,9 +1,11 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-    <h1>Crear una nueva tarea</h1>
-    <form action="" method="post" class="col-12 col-sm-12">
-        {% csrf_token %}
-        {{ form.as_div }}
-        <button type="submit" class="btn btn-success">Guardar</button>
-    </form>
+    <main class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="col-6 col-sm-6">Crear una nueva tarea</h1>
+        <form action="" method="post" class="col-6 col-sm-6">
+            {% csrf_token %}
+            {{ form }}
+                <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </main>
 {% endblock %}

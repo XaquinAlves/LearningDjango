@@ -1,3 +1,4 @@
+import django.views.defaults
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -37,6 +38,7 @@ def create_task(request):
     elif request.method == 'POST':
         new_task = Task.objects.create(title=request.POST['title'], description=request.POST['description'],  project_id=1)
         new_task.save()
-        return redirect('/home/tasks/')
+        return redirect('tasks')
     else:
-        return HttpResponse("Method not allowed")
+        return HttpResponse("<h1>405 Method Not Allowed.<h1>",
+                            status=405)
